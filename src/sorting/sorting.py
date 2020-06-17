@@ -5,13 +5,13 @@ def merge(arrA, arrB):
     # Your code here
     # Grab two values from list a and b with a counter from for loop
     # if one is less than other append to end of list, while other can go to current list location
-    for i in range(len(arrB)):
+    for i in range(0, len(arrB), 2):
         if arrA[i] < arrB[i]:
             merged_arr[i] = arrA[i]
-            merged_arr.append(arrB[i])
+            merged_arr[i + 1] = arrB[i]
         elif arrB[i] < arrA[i]:
             merged_arr[i] = arrB[i]
-            merged_arr.append(arrA[i])
+            merged_arr[i + 1] = arrA[i]
 
     return merged_arr
 
@@ -32,11 +32,13 @@ def merge_sort(arr):
     left = arr[lowest: middle]
     right = arr[middle: highest]
 
-    if len(left) != 0 and len(right) != 0:
+    if len(left) != 1 and len(right) != 1:
         print(left)
         print(right)
         return merge_sort(left) + merge_sort(right)
-    elif len(left) == 0 and len(right) == 0:
+    elif len(left) == 1 and len(right) == 1:
+        print(left)
+        print(right)
         return merge(left, right)
 
     return arr
