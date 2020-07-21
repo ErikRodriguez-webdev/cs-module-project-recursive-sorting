@@ -2,8 +2,6 @@
 def binary_search(arr, target, start, end):
     # Your code here
     # find middle value from list
-    # if target > middle value then call function again with new start and end values
-    # if target < middle value then call function again with new start and end values
     middle = (start + end) // 2
 
     if len(arr) == 0:
@@ -11,12 +9,14 @@ def binary_search(arr, target, start, end):
 
     if target == arr[middle]:
         return middle
+    # if target > middle value then call function again with new start and end values
     elif target > arr[middle]:
-        lowest = middle + 1
-        return binary_search(arr, target, lowest, end)
+        new_start = middle + 1
+        return binary_search(arr, target, new_start, end)
+    # if target < middle value then call function again with new start and end values
     elif target < arr[middle]:
-        highest = middle - 1
-        return binary_search(arr, target, start, highest)
+        new_end = middle - 1
+        return binary_search(arr, target, start, new_end)
 
     # STRETCH: implement an order-agnostic binary search
     # This version of binary search should correctly find
