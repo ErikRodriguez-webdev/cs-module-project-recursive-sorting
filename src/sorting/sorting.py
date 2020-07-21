@@ -36,25 +36,48 @@ def merge(arrA, arrB):
 
     return merged_arr
 
+
+# test1 = merge([1, 3], [2, 4])
+# print(test1)
+
 # TO-DO: implement the Merge Sort function below recursively
 
 
 def merge_sort(arr):
-    pass
+    print(arr)
     # Your code here
-    #
+    # set lowest to zero
+    lowest = 0
+    # set highest to len of arr -1
+    highest = len(arr)
+    # check if length of arr is > 1
+
+    if len(arr) > 2:
+        # then middle is lowest + highest // 2
+        middle = (lowest + highest) // 2
+        # return merge(merge_sort(arr[:middle]) + merge_sort(arr[middle:]))
+        return merge_sort(arr[:middle]) + merge_sort(arr[middle:])
+    # check if length of arr == 2
+    elif len(arr) == 2:
+        # then return merge(array one and array two)
+        split = arr.pop()
+        return merge(arr, [split])
 
     return arr
 
-    # STRETCH: implement the recursive logic for merge sort in a way that doesn't
-    # utilize any extra memory
-    # In other words, your implementation should not allocate any additional lists
-    # or data structures; it can only re-use the memory it was given as input
 
-    def merge_in_place(arr, start, mid, end):
-        pass
-        # Your code here
+test2 = merge_sort([1, 4, 2, 5, 3, 6])
+print(test2)
 
-    def merge_sort_in_place(arr, l, r):
-        pass
-        # Your code here
+# STRETCH: implement the recursive logic for merge sort in a way that doesn't
+# utilize any extra memory
+# In other words, your implementation should not allocate any additional lists
+# or data structures; it can only re-use the memory it was given as input
+
+# def merge_in_place(arr, start, mid, end):
+#     pass
+# Your code here
+
+# def merge_sort_in_place(arr, l, r):
+#     pass
+# Your code here
