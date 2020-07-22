@@ -9,6 +9,7 @@ def merge(arrA, arrB):
 
     # for i length of merged_arr loop
     for i in range(len(merged_arr)):
+        print(f"in merge fn loop: {i}, list: {merged_arr}")
         # check if pointer_a == length of arrA
         if pointer_a == len(arrA):
             # then overide and set merged_arr[i] to arrB[pointer_b]
@@ -16,7 +17,7 @@ def merge(arrA, arrB):
             # add one to pointer_b
             pointer_b += 1
         # check if pointer_b == length of arrB
-        elif pointer_a == len(arrB):
+        elif pointer_b == len(arrB):
             # then overide and set merged_arr[i] to arrA[pointer_a]
             merged_arr[i] = arrA[pointer_a]
             # add one to pointer_a
@@ -37,7 +38,7 @@ def merge(arrA, arrB):
     return merged_arr
 
 
-# test1 = merge([1, 3], [2, 4])
+# test1 = merge([1, 4], [2, 3])
 # print(test1)
 
 # TO-DO: implement the Merge Sort function below recursively
@@ -56,18 +57,21 @@ def merge_sort(arr):
         # then middle is lowest + highest // 2
         middle = (lowest + highest) // 2
         # return merge(merge_sort(arr[:middle]) + merge_sort(arr[middle:]))
-        return merge_sort(arr[:middle]) + merge_sort(arr[middle:])
-    # check if length of arr == 2
-    elif len(arr) == 2:
-        # then return merge(array one and array two)
-        split = arr.pop()
-        return merge(arr, [split])
+        return merge(merge_sort(arr[:middle]),  merge_sort(arr[middle:]))
 
-    return arr
+    elif len(arr) <= 1:
+        return arr
+
+    # separate list holding 2 values
+    else:
+        arr_1 = arr
+        arr_2 = [arr_1.pop()]
+        print(f"arr1: {arr_1}, arr2: {arr_2}")
+        return merge(arr_1, arr_2)
 
 
-test2 = merge_sort([1, 4, 2, 5, 3, 6])
-print(test2)
+# test2 = merge_sort([4, 1, 3, 2, 5, 6, 8, 7])
+# print(test2)
 
 # STRETCH: implement the recursive logic for merge sort in a way that doesn't
 # utilize any extra memory
